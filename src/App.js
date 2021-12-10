@@ -30,11 +30,10 @@ export default function App() {
 
   return (
     <div className="App">    
-      
-
+      <h2>LISTAGEM:</h2>
       { 
       pokelista.map((results) => 
-        <div className='Poke' key={results.name}>
+        <div className='Poke' key={results.name}>  
           <h1>{ results.name }</h1>
           <p>{ results.url}</p>
           {chama()}
