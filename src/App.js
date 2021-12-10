@@ -5,28 +5,29 @@ export default function App() {
 
   const [pokelista, setPokelista] = useState([])
   const [pokesprite, setPokesprite] = useState([])
+  //ATUALIZANDO NO STATE POR ENQUANTO
+  const [pokemon, setPokemon] = useState(300)
 
-
-  useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=1118&offset=0')
+  useEffect((poke = pokemon) => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${poke}/`)
         .then(response => (response.json()))
-        .then(data => setPokelista(data.results));
+        .then(data => setPokesprite(data.sprites.front_default)) 
   }, []);
-
-  useEffect((pokelist = 'bulbasaur') => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokelist}/`)
+  
+  useEffect((poke = pokemon) => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${poke}/`)
         .then(response => (response.json()))
-        .then(data => setPokesprite(data.sprites));
-
+        .then(dados => setPokelista(dados.forms))
   }, []);
 
   const chama=()=>{
     return(
-      <img src={pokesprite.front_default}/>
+      <img src={pokesprite}/>
     )
   }
 
-  console.log(pokesprite)
+  //console.log(pokesprite)
+  //console.log(pokelista)
 
   return (
     <div className="App">    
